@@ -7,7 +7,8 @@ class MealDatailScreen extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
       child: Text(
-        'Igredientes',
+        title
+        ,
         style: Theme.of(context).textTheme.headline6,
       ),
     );
