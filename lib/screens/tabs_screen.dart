@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'categories_screen.dart';
 import 'favorite_screen.dart';
+import '../components/main_drawer.dart';
 
 class TabsScreen extends StatefulWidget {
   const TabsScreen({Key? key}) : super(key: key);
@@ -10,8 +11,7 @@ class TabsScreen extends StatefulWidget {
 }
 
 class _TabsScreenState extends State<TabsScreen> {
-  
-  int _selectedScreenIndex =0;
+  int _selectedScreenIndex = 0;
   final List<String> _titles = [
     'Lista de Categorias',
     'Meus Favoritos',
@@ -30,29 +30,31 @@ class _TabsScreenState extends State<TabsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(_titles[_selectedScreenIndex]),
-      ),
-      body: _screens[_selectedScreenIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: _selectScreen,
-        unselectedItemColor: Colors.black,
-        selectedItemColor: Theme.of(context).accentColor,
-        currentIndex: _selectedScreenIndex,
-        type: BottomNavigationBarType.shifting,
-        items: [
-          BottomNavigationBarItem(
-            backgroundColor: Theme.of(context).primaryColor,
-            icon: Icon(Icons.category),
-            label: _titles[_selectedScreenIndex],
+        appBar: AppBar(
+          title: Center(
+            child: Text(_titles[_selectedScreenIndex]),
           ),
-          BottomNavigationBarItem(
-            backgroundColor: Theme.of(context).primaryColor,
-            icon: Icon(Icons.star),
-            label: _titles[_selectedScreenIndex],
-          )
-        ],
-      )
-    );
+        ),
+        drawer: MainDrawer(),
+        body: _screens[_selectedScreenIndex],
+        bottomNavigationBar: BottomNavigationBar(
+          onTap: _selectScreen,
+          unselectedItemColor: Colors.black,
+          selectedItemColor: Theme.of(context).accentColor,
+          currentIndex: _selectedScreenIndex,
+          type: BottomNavigationBarType.shifting,
+          items: [
+            BottomNavigationBarItem(
+              backgroundColor: Theme.of(context).primaryColor,
+              icon: Icon(Icons.category),
+              label: _titles[_selectedScreenIndex],
+            ),
+            BottomNavigationBarItem(
+              backgroundColor: Theme.of(context).primaryColor,
+              icon: Icon(Icons.star),
+              label: _titles[_selectedScreenIndex],
+            )
+          ],
+        ));
   }
 }
